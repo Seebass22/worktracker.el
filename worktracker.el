@@ -2,13 +2,12 @@
   "return a suggestion for the current activity, based on the file extension
  of the currently open file"
   (if (stringp (buffer-file-name))
-      (progn
-        (setq ext (file-name-extension (buffer-file-name)))
-        (cond ((equal ext "el") "emacs")
-              ((equal ext "rs") "rust")
-              ((equal ext "py") "python")
-              ((equal ext "gd") "godot")
-              (t "none")))
+      (let ((ext (file-name-extension (buffer-file-name))))
+           (cond ((equal ext "el") "emacs")
+                 ((equal ext "rs") "rust")
+                 ((equal ext "py") "python")
+                 ((equal ext "gd") "godot")
+                 (t "none")))
     "none"))
 
 
