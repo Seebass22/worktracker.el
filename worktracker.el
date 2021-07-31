@@ -1,4 +1,6 @@
 (defun get--activity ()
+  "return a suggestion for the current activity, based on the file extension
+ of the currently open file"
   (if (stringp (buffer-file-name))
       (progn
         (setq ext (file-name-extension (buffer-file-name)))
@@ -11,10 +13,12 @@
 
 
 (defun worktracker--status ()
+  "return worktracker status as a string"
   (shell-command-to-string "worktracker --status"))
 
 
 (defun worktracker-start (word)
+  "start tracking an activity"
   (interactive
    (list (read-string (format "start tracking [%s]: " (get--activity)) nil nil (get--activity))))
 
@@ -24,17 +28,20 @@
 
 
 (defun worktracker-stop ()
+  "stop tracking"
   (interactive)
   (message
    (shell-command-to-string "worktracker --stop")))
 
 
 (defun worktracker-today ()
+  "print time worked today"
   (interactive)
   (message
    (shell-command-to-string "worktracker --today")))
 
 
 (defun worktracker-status ()
+  "print worktracker status"
   (interactive)
   (message (worktracker--status)))
