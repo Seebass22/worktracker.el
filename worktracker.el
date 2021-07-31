@@ -10,6 +10,10 @@
     "none"))
 
 
+(defun worktracker--status ()
+  (shell-command-to-string "worktracker --status"))
+
+
 (defun worktracker-start (word)
   (interactive
    (list (read-string (format "start tracking [%s]: " (get--activity)) nil nil (get--activity))))
@@ -23,3 +27,14 @@
   (interactive)
   (message
    (shell-command-to-string "worktracker --stop")))
+
+
+(defun worktracker-today ()
+  (interactive)
+  (message
+   (shell-command-to-string "worktracker --today")))
+
+
+(defun worktracker-status ()
+  (interactive)
+  (message (worktracker--status)))
