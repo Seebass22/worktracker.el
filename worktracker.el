@@ -16,14 +16,14 @@
   (shell-command-to-string "worktracker --status"))
 
 
-(defun worktracker-start (word)
+(defun worktracker-start (activity)
   "start tracking an activity"
   (interactive
    (list (read-string (format "start tracking [%s]: " (get--activity)) nil nil (get--activity))))
 
   (message
    (shell-command-to-string
-    (concat "worktracker --start " word))))
+    (concat "worktracker --start " "\"" activity "\""))))
 
 
 (defun worktracker-stop ()
