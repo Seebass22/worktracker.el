@@ -3,11 +3,7 @@
  of the currently open file"
   (if (stringp (buffer-file-name))
       (let ((ext (file-name-extension (buffer-file-name))))
-           (cond ((equal ext "el") "emacs")
-                 ((equal ext "rs") "rust")
-                 ((equal ext "py") "python")
-                 ((equal ext "gd") "godot")
-                 (t "none")))
+        (alist-get (intern ext) worktracker-activities))
     "none"))
 
 
